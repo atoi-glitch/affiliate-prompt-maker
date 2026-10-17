@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f5ef">
+<title>ことのは｜アフィリエイト投稿作成補助</title>
+<link rel="stylesheet" href="./style.css">
+<script src="./app.js" defer></script>
+</head>
+<body>
+<main>
+<header><p class="eyebrow">AFFILIATE PROMPT MAKER</p><h1>ことのは</h1><p>あなたのひとことを、投稿のきっかけに。</p><p class="muted">商品情報から、ChatGPTに貼り付けるプロンプトを作ります。</p></header>
+<p id="storage-warning" class="warning" role="status" hidden></p>
+<form id="product-form" novalidate>
+<section class="card" aria-labelledby="product-title">
+<div class="section-heading"><h2 id="product-title"><span>01</span> 商品について</h2><button type="button" id="reset" class="quiet">リセット</button></div>
+<p id="edit-notice" class="hint" hidden>履歴を編集中です。生成すると上書き保存します。</p>
+<label for="name">商品名 <small>必須</small></label><input id="name" name="name" required maxlength="200" placeholder="例：コードレス掃除機">
+<label for="url">商品URL <span class="optional">任意</span></label><input id="url" name="url" type="url" inputmode="url" placeholder="https://…">
+<label for="memo">商品についての一言メモ <small>必須</small></label><textarea id="memo" name="memo" required rows="3" maxlength="5000" placeholder="気になったこと、使って感じたことをそのまま。"></textarea>
+<label for="usage">使用状況</label><select id="usage" name="usage"><option>実際に使っている</option><option>買うか迷っている</option><option>未使用・紹介のみ</option></select>
+<label for="sale">セール状況</label><select id="sale" name="sale"><option>通常</option><option>セール中</option></select>
+<label for="saleMemo">セールメモ <span class="optional">任意</span></label><input id="saleMemo" name="saleMemo" maxlength="500" placeholder="例：40%OFF、過去最安、プライム感謝祭">
+</section>
+<section class="card" aria-labelledby="settings-title">
+<h2 id="settings-title"><span>02</span> 投稿設定</h2>
+<label for="target">ターゲット</label><select id="target" name="target"><option>ママ</option><option>主婦</option><option>出産準備</option><option>在宅ワーク</option><option>家づくり</option><option>暮らし</option><option>美容</option><option>自由入力</option></select>
+<div id="custom-target-wrap" hidden><label for="customTarget">ターゲットを入力 <small>必須</small></label><input id="customTarget" name="customTarget" maxlength="200" placeholder="例：一人暮らしの社会人"></div>
+<label for="postType">投稿タイプ</label><select id="postType" name="postType"><option>Threads</option><option>Instagram</option><option>Reel</option><option>全部</option></select>
+<label class="check" for="pr"><input id="pr" name="pr" type="checkbox" checked><span>PR表記を入れる <span class="optional">ON / OFF</span></span></label>
+<p class="hint">アフィリエイト投稿では、広告であることが伝わる表記を推奨します。</p>
+<label for="extra">補足メモ <span class="optional">任意</span></label><textarea id="extra" name="extra" rows="3" maxlength="5000" placeholder="入れたい特徴、避けたい表現など。"></textarea>
+</section>
+<p id="form-error" class="error" role="alert" hidden></p>
+<button class="primary full" type="submit" id="generate">プロンプトを生成</button>
+<p class="hint centered">生成時に商品履歴をこのブラウザへ保存します。</p>
+</form>
+<section class="card" id="result-section" aria-labelledby="result-title">
+<h2 id="result-title"><span>03</span> 生成結果</h2><p class="hint">コピーしてChatGPTに貼り付けてください。</p>
+<label for="result" class="sr-only">生成されたプロンプト</label><textarea id="result" rows="12" readonly placeholder="ここに完成プロンプトが表示されます。"></textarea>
+<button type="button" id="copy" class="primary full" disabled>コピー</button>
+</section>
+<section class="history-section" aria-labelledby="history-title"><div class="section-heading"><h2 id="history-title">商品履歴</h2><span id="history-count" class="muted"></span></div><p class="hint">履歴はこの端末・ブラウザ内に保存されます。</p><div id="history"></div></section>
+<footer>ことのは · 外部API不要 / データの外部送信なし</footer>
+</main><p id="toast" role="status" aria-live="polite" hidden></p>
+</body></html>
