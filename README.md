@@ -1,0 +1,1 @@
+# affiliate-prompt-maker
